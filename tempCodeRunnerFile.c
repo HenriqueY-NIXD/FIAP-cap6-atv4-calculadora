@@ -1,0 +1,2 @@
+ key);
+		// repetir = 0;
