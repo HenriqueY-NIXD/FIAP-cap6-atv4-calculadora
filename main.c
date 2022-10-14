@@ -1,15 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "colour.c"
-#include "operations.c"
-
 char escolhas[][14] = {"Soma", "Subtracao", "Multiplicacao", "Divisao"};
 
 char key;
 
 int escolha = -1;
 int repetir = 1;
+
+void resetColour() {
+    printf("\033[0m");
+}
+
+void white (char text[]) {
+  printf("\033[1;37m");
+  printf("%s", text);
+  resetColour();
+}
+
+void green (char text[]) {
+  printf("\033[1;32m");
+  printf("%s", text);
+  resetColour();
+}
+
+float soma(float numero1, float numero2) {
+	return numero1 + numero2;
+}
+
+float subtracao(float numero1, float numero2) {
+	return numero1 - numero2;
+}
+
+float multiplicacao(float numero1, float numero2) {
+	return numero1 * numero2;
+}
+
+float divisao(float numero1, float numero2) {
+	return numero1 / numero2;
+}
 
 int main()
 {
@@ -48,20 +77,20 @@ int main()
 		}
 	}
 
-	int numero1, numero2;
+	float numero1, numero2;
 
 	printf("Digite o 1 numero: ");
-	scanf("%i", &numero1);
+	scanf("%f", &numero1);
 	printf("Digite o 2 numero: ");
-	scanf("%i", &numero2);
+	scanf("%f", &numero2);
 
-	if (numero2 == 0 && escolha == 3){
+	if (numero2 == 0.0 && escolha == 3){
 		printf("ERRO, não pode dividir por 0");
 		return 1;
 	}
     
 
-	int resposta;
+	float resposta;
 	switch(escolha) {
 		case 0:
 			resposta = soma(numero1, numero2);
@@ -76,7 +105,9 @@ int main()
 			resposta = divisao(numero1, numero2);
 			break;
 	}
-	printf("\nResposta: %i\n", resposta);
+
+  printf("\nResposta: %.2f\n", resposta);
 
     return 0;
 }
+
